@@ -1,18 +1,19 @@
 package com.resources.human.domain;
 
+import com.resources.human.domain.enums.Categoria;
 import com.resources.human.domain.exceptions.DomainValidationException;
 
 public class Recurso {
     private int id;
     private String nomeDoRecurso;
-    private String categoria; // Maybe a Enum("Notebook", "Monitor", "Licença")
+    private Categoria categoria;
     private boolean disponivel;
     private double valorEstimado;
 
     private Recurso(
             int id,
             String nomeDoRecurso,
-            String categoria,
+            Categoria categoria,
             boolean disponivel,
             double valorEstimado
     ) throws DomainValidationException {
@@ -29,7 +30,7 @@ public class Recurso {
     public static Recurso create(
             int id,
             String nomeDoRecurso,
-            String categoria,
+            Categoria categoria,
             boolean disponivel,
             double valorEstimado
     ) throws DomainValidationException {

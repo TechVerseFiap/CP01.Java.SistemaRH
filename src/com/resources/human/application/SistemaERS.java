@@ -1,6 +1,7 @@
 package com.resources.human.application;
 
 import com.resources.human.domain.*;
+import com.resources.human.domain.enums.Categoria;
 import com.resources.human.domain.exceptions.DomainValidationException;
 
 import java.time.LocalDate;
@@ -18,16 +19,16 @@ public class SistemaERS {
         Recurso recurso = Recurso.create(
                 recursoId,
                 "Notebook HP",
-                "Notebook",
+                Categoria.NOTEBOOK,
                 true,
                 450.50
         );
 
-        Alocacao alocacao = Alocacao.create(
+        Alocacao.create(
                 colaborador,
                 recurso,
                 LocalDate.now(),
-                "Seila"
+                "Devolução será realizada no dia do retorno do Diretor para a Matriz."
         );
     }
 }
