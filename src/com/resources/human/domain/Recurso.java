@@ -16,10 +16,7 @@ public class Recurso {
             Categoria categoria,
             boolean disponivel,
             double valorEstimado
-    ) throws DomainValidationException {
-        if (valorEstimado > 5000)
-            throw new DomainValidationException("Necessário de autorização para valor estimado maior que R$ 5000,00");
-
+    ) {
         this.id = id;
         this.nomeDoRecurso = nomeDoRecurso;
         this.categoria = categoria;
@@ -33,7 +30,7 @@ public class Recurso {
             Categoria categoria,
             boolean disponivel,
             double valorEstimado
-    ) throws DomainValidationException {
+    ) {
         return new Recurso(
             id,
             nomeDoRecurso,
@@ -43,5 +40,7 @@ public class Recurso {
       );
     }
 
-    public boolean podeSerAlocado() { return disponivel && valorEstimado <= 5000; }
+    public boolean podeSerAlocado() { return disponivel; }
+    public void mudarDisponibilidade() { this.disponivel = !this.disponivel; }
+    public boolean necessarioAutorizacao() { return valorEstimado > 5000; }
 }
