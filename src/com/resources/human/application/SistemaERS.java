@@ -2,6 +2,7 @@ package com.resources.human.application;
 
 import com.resources.human.domain.*;
 import com.resources.human.domain.enums.Categoria;
+import com.resources.human.domain.exceptions.AlreadyExistsByIdException;
 import com.resources.human.domain.exceptions.DomainValidationException;
 import com.resources.human.domain.exceptions.EntityNotFoundException;
 
@@ -10,9 +11,27 @@ import java.util.List;
 import java.util.Optional;
 
 public class SistemaERS {
-    public List<Recurso> recursoList;
-    public List<Colaborador> colaboradorList;
-    public List<Alocacao> alocacaoList;
+    private List<Recurso> recursoList;
+    private List<Colaborador> colaboradorList;
+    private List<Alocacao> alocacaoList;
+
+    public Colaborador criarColaborador(int id, String nome, String cargo, double salario, LocalDate dataDeAdmissao) throws AlreadyExistsByIdException {
+        if (colaboradorList.stream().anyMatch(c -> c.getId() == id))
+            throw new AlreadyExistsByIdException("Um Colaborador com o mesmo ID já existe na base de dados!");
+
+        Colaborador colaboradorCriado = Colaborador.create(id, nome, cargo, salario, dataDeAdmissao);
+        colaboradorList.add(colaboradorCriado);
+        return colaboradorCriado;
+    }
+
+    public Recurso criarRecurso(int id, String nomeDoRecurso, Categoria categoria, boolean disponivel, double valorEstimado) throws AlreadyExistsByIdException {
+        if (recursoList.stream().anyMatch(c -> c.getId() == id))
+            throw new AlreadyExistsByIdException("Um Recurso com o mesmo ID já existe na base de dados!");
+
+        Recurso recursoCriado = Recurso.create(id, nomeDoRecurso, categoria, disponivel, valorEstimado);
+        recursoList.add(recursoCriado);
+        return recursoCriado;
+    }
 
     public void alocarRecurso(int colaboradorId, int recursoId) throws EntityNotFoundException, DomainValidationException {
         Optional<Colaborador> colaboradorAlocacao = colaboradorList.stream()

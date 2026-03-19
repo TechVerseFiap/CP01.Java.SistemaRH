@@ -1,7 +1,6 @@
 package com.resources.human.domain;
 
 import com.resources.human.domain.enums.Categoria;
-import com.resources.human.domain.exceptions.DomainValidationException;
 
 public class Recurso {
     private int id;

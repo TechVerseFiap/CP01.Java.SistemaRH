@@ -10,7 +10,6 @@ public class Colaborador {
     private boolean ativo;
     private LocalDate dataDeAdmissao;
 
-
     private Colaborador(
             int id,
             String nome,
