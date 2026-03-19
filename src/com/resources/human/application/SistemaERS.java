@@ -24,7 +24,7 @@ public class SistemaERS {
                 450.50
         );
 
-        Alocacao.create(
+        Alocacao alocacao = Alocacao.create(
                 colaborador,
                 recurso,
                 LocalDate.now(),
