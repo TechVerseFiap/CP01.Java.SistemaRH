@@ -5,8 +5,13 @@ import com.resources.human.domain.enums.Categoria;
 import com.resources.human.domain.exceptions.DomainValidationException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class SistemaERS {
+    public List<Recurso> recursoList;
+    public List<Colaborador> colaboradorList;
+    public List<Alocacao> alocacaoList;
+
     public void alocarRecurso(int colaboradorId, int recursoId) throws DomainValidationException {
         Colaborador colaborador = Colaborador.create(
                 colaboradorId,
