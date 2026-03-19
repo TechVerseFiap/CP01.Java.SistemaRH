@@ -46,4 +46,8 @@ public class Colaborador {
         this.cargo = novoCargo;
         this.salario = novoSalario;
     }
+
+    public int getId() {
+        return this.id;
+    }
 }

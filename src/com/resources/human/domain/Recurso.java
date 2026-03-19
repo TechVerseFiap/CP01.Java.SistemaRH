@@ -43,4 +43,8 @@ public class Recurso {
     public boolean podeSerAlocado() { return disponivel; }
     public void mudarDisponibilidade() { this.disponivel = !this.disponivel; }
     public boolean necessarioAutorizacao() { return valorEstimado > 5000; }
+
+    public int getId() {
+        return this.id;
+    }
 }
