@@ -2,6 +2,7 @@ package com.resources.human.application;
 
 import com.resources.human.domain.*;
 import com.resources.human.domain.enums.Categoria;
+import com.resources.human.domain.exceptions.AllocationMismatchException;
 import com.resources.human.domain.exceptions.AlreadyExistsByIdException;
 import com.resources.human.domain.exceptions.DomainValidationException;
 import com.resources.human.domain.exceptions.EntityNotFoundException;
@@ -72,5 +73,17 @@ public class SistemaERS {
         );
 
         alocacaoList.add(alocacao);
+    }
+
+    public void devolverRecurso(int colaboradorId, int recursoId) throws EntityNotFoundException, AllocationMismatchException {
+        Optional<Alocacao> alocacao = alocacaoList.stream().filter(a -> a.getRecurso().getId() == recursoId).findFirst();
+
+        if (alocacao.isEmpty())
+            throw new EntityNotFoundException("Não existe uma alocação para o seguinte ID de recurso: "+ recursoId);
+        if (alocacao.get().getColaborador().getId() != colaboradorId)
+            throw new AllocationMismatchException("O colaborador informado não possue alocação com esse recurso!");
+
+        alocacao.get().getRecurso().mudarDisponibilidade();
+        alocacaoList.remove(alocacao.get());
     }
 }

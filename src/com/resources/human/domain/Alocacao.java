@@ -41,4 +41,12 @@ public class Alocacao {
             observacao
         );
     }
+
+    public Recurso getRecurso() {
+        return recurso;
+    }
+
+    public Colaborador getColaborador() {
+        return colaborador;
+    }
 }
