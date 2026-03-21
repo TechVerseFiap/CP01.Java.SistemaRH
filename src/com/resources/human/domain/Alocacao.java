@@ -49,4 +49,13 @@ public class Alocacao {
     public Colaborador getColaborador() {
         return colaborador;
     }
+
+    public String exibir() {
+        return "Alocacao{" +
+                "colaborador=" + colaborador +
+                ", recurso=" + recurso +
+                ", data=" + data +
+                ", observacao='" + observacao + '\'' +
+                '}';
+    }
 }

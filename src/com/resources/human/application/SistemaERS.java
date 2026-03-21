@@ -52,6 +52,36 @@ public class SistemaERS {
         return recurso.get();
     }
 
+    public void listarColaboradores() {
+        System.out.println("=== LISTAGEM DE COLABORADORES CADASTRADOS ===\n\n");
+        if (colaboradorList.isEmpty()) {
+            for (Colaborador c : colaboradorList) {
+                System.out.println(c.exibir());
+            }
+        }
+        System.out.println("- Nenhum colaborador Cadastrado");
+    }
+
+    public void listarRecursos() {
+        System.out.println("=== LISTAGEM DE RECURSOS CADASTRADOS ===\n\n");
+        if (!recursoList.isEmpty()) {
+            for (Recurso r : recursoList) {
+                System.out.println(r.exibir());
+            }
+        }
+        System.out.println("- Nenhum recurso Cadastrado");
+    }
+
+    public void listarAlocacoes() {
+        System.out.println("=== LISTAGEM DE ALOCAÇÕES CADASTRADOS ===\n\n");
+        if (!alocacaoList.isEmpty()) {
+            for (Alocacao a : alocacaoList) {
+                System.out.println(a.exibir());
+            }
+        }
+        System.out.println("- Nenhuma alocação Cadastrado");
+    }
+
     public void alocarRecurso(int colaboradorId, int recursoId) throws EntityNotFoundException, DomainValidationException {
         Optional<Colaborador> colaboradorAlocacao = colaboradorList.stream()
                 .filter(c -> c.getId() == colaboradorId)

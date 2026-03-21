@@ -49,4 +49,15 @@ public class Colaborador {
     public int getId() {
         return this.id;
     }
+
+    public String exibir() {
+        return "Colaborador{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cargo='" + cargo + '\'' +
+                ", salario=" + salario +
+                ", ativo=" + ativo +
+                ", dataDeAdmissao=" + dataDeAdmissao +
+                '}';
+    }
 }

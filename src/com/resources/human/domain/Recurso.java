@@ -46,4 +46,14 @@ public class Recurso {
     public int getId() {
         return this.id;
     }
+
+    public String exibir() {
+        return "Recurso{" +
+                "id=" + id +
+                ", nomeDoRecurso='" + nomeDoRecurso + '\'' +
+                ", categoria=" + categoria +
+                ", disponivel=" + disponivel +
+                ", valorEstimado=" + valorEstimado +
+                '}';
+    }
 }
