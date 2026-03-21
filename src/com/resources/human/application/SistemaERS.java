@@ -15,7 +15,7 @@ public class SistemaERS {
     private List<Colaborador> colaboradorList;
     private List<Alocacao> alocacaoList;
 
-    public Colaborador criarColaborador(int id, String nome, String cargo, double salario, LocalDate dataDeAdmissao) throws AlreadyExistsByIdException {
+    public Colaborador cadastrarColaborador(int id, String nome, String cargo, double salario, LocalDate dataDeAdmissao) throws AlreadyExistsByIdException {
         if (colaboradorList.stream().anyMatch(c -> c.getId() == id))
             throw new AlreadyExistsByIdException("Um Colaborador com o mesmo ID já existe na base de dados!");
 
@@ -24,13 +24,31 @@ public class SistemaERS {
         return colaboradorCriado;
     }
 
-    public Recurso criarRecurso(int id, String nomeDoRecurso, Categoria categoria, boolean disponivel, double valorEstimado) throws AlreadyExistsByIdException {
+    public Recurso cadastrarRecurso(int id, String nomeDoRecurso, Categoria categoria, boolean disponivel, double valorEstimado) throws AlreadyExistsByIdException {
         if (recursoList.stream().anyMatch(c -> c.getId() == id))
             throw new AlreadyExistsByIdException("Um Recurso com o mesmo ID já existe na base de dados!");
 
         Recurso recursoCriado = Recurso.create(id, nomeDoRecurso, categoria, disponivel, valorEstimado);
         recursoList.add(recursoCriado);
         return recursoCriado;
+    }
+
+    public Colaborador buscarColaboradorById(int colaboradorId) throws EntityNotFoundException {
+        Optional<Colaborador> colaborador = colaboradorList.stream()
+                .filter(c -> c.getId() == colaboradorId)
+                .findFirst();
+        if (colaborador.isEmpty())
+            throw new EntityNotFoundException("Colaborador inexistente!");
+        return colaborador.get();
+    }
+
+    public Recurso buscarRecursoById(int recursoId) throws EntityNotFoundException {
+        Optional<Recurso> recurso = recursoList.stream()
+                .filter(r -> r.getId() == recursoId)
+                .findFirst();
+        if (recurso.isEmpty())
+            throw new EntityNotFoundException("Recurso inexistente!");
+        return recurso.get();
     }
 
     public void alocarRecurso(int colaboradorId, int recursoId) throws EntityNotFoundException, DomainValidationException {
