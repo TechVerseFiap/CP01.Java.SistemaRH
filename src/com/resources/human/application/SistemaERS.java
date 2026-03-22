@@ -2,10 +2,7 @@ package com.resources.human.application;
 
 import com.resources.human.domain.*;
 import com.resources.human.domain.enums.Categoria;
-import com.resources.human.domain.exceptions.AllocationMismatchException;
-import com.resources.human.domain.exceptions.AlreadyExistsByIdException;
-import com.resources.human.domain.exceptions.DomainValidationException;
-import com.resources.human.domain.exceptions.EntityNotFoundException;
+import com.resources.human.domain.exceptions.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,7 +13,8 @@ public class SistemaERS {
     private List<Colaborador> colaboradorList;
     private List<Alocacao> alocacaoList;
 
-    public Colaborador cadastrarColaborador(int id, String nome, String cargo, double salario, LocalDate dataDeAdmissao) throws AlreadyExistsByIdException {
+    public Colaborador cadastrarColaborador(int id, String nome, String cargo, double salario, LocalDate dataDeAdmissao)
+            throws AlreadyExistsByIdException {
         if (colaboradorList.stream().anyMatch(c -> c.getId() == id))
             throw new AlreadyExistsByIdException("Um Colaborador com o mesmo ID já existe na base de dados!");
 
@@ -25,7 +23,8 @@ public class SistemaERS {
         return colaboradorCriado;
     }
 
-    public Recurso cadastrarRecurso(int id, String nomeDoRecurso, Categoria categoria, boolean disponivel, double valorEstimado) throws AlreadyExistsByIdException {
+    public Recurso cadastrarRecurso(int id, String nomeDoRecurso, Categoria categoria, boolean disponivel, double valorEstimado)
+            throws AlreadyExistsByIdException, DomainValidationException {
         if (recursoList.stream().anyMatch(c -> c.getId() == id))
             throw new AlreadyExistsByIdException("Um Recurso com o mesmo ID já existe na base de dados!");
 
@@ -80,6 +79,20 @@ public class SistemaERS {
             }
         }
         System.out.println("- Nenhuma alocação Cadastrado");
+    }
+
+    public void removerColaborador(int colaboradorId) throws EntityInUseException, EntityNotFoundException {
+        if (alocacaoList.stream().anyMatch(a -> a.getColaborador().getId() == colaboradorId))
+            throw new EntityInUseException("Impossível remover um colaborador que ainda possui alguma alocação ativa!");
+        Colaborador colaborador = buscarColaboradorById(colaboradorId);
+        colaboradorList.remove(colaborador);
+    }
+
+    public void removerRecurso(int recursoId) throws EntityInUseException, EntityNotFoundException {
+        if (alocacaoList.stream().anyMatch(a -> a.getRecurso().getId() == recursoId))
+            throw new EntityInUseException("Impossível remover um recurso que ainda possui alocação ativa!");
+        Recurso recurso = buscarRecursoById(recursoId);
+        recursoList.remove(recurso);
     }
 
     public void alocarRecurso(int colaboradorId, int recursoId) throws EntityNotFoundException, DomainValidationException {

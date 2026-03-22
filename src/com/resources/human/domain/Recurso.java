@@ -1,6 +1,7 @@
 package com.resources.human.domain;
 
 import com.resources.human.domain.enums.Categoria;
+import com.resources.human.domain.exceptions.DomainValidationException;
 
 public class Recurso {
     private int id;
@@ -29,7 +30,9 @@ public class Recurso {
             Categoria categoria,
             boolean disponivel,
             double valorEstimado
-    ) {
+    ) throws DomainValidationException {
+        if (!disponivel)
+            throw new DomainValidationException("Impossível cadastrar recurso que não está disponível!");
         return new Recurso(
             id,
             nomeDoRecurso,
