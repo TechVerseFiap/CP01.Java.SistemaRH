@@ -30,7 +30,9 @@ public class Recurso {
             Categoria categoria,
             boolean disponivel,
             double valorEstimado
-    ) {
+    ) throws DomainValidationException {
+        if (!disponivel)
+            throw new DomainValidationException("Impossível cadastrar recurso que não está disponível!");
         return new Recurso(
             id,
             nomeDoRecurso,
@@ -43,4 +45,18 @@ public class Recurso {
     public boolean podeSerAlocado() { return disponivel; }
     public void mudarDisponibilidade() { this.disponivel = !this.disponivel; }
     public boolean necessarioAutorizacao() { return valorEstimado > 5000; }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public String exibir() {
+        return "Recurso{" +
+                "id=" + id +
+                ", nomeDoRecurso='" + nomeDoRecurso + '\'' +
+                ", categoria=" + categoria +
+                ", disponivel=" + disponivel +
+                ", valorEstimado=" + valorEstimado +
+                '}';
+    }
 }

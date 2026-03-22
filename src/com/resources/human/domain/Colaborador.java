@@ -10,7 +10,6 @@ public class Colaborador {
     private boolean ativo;
     private LocalDate dataDeAdmissao;
 
-
     private Colaborador(
             int id,
             String nome,
@@ -45,5 +44,20 @@ public class Colaborador {
     public void promover(String novoCargo, double novoSalario) {
         this.cargo = novoCargo;
         this.salario = novoSalario;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public String exibir() {
+        return "Colaborador{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cargo='" + cargo + '\'' +
+                ", salario=" + salario +
+                ", ativo=" + ativo +
+                ", dataDeAdmissao=" + dataDeAdmissao +
+                '}';
     }
 }

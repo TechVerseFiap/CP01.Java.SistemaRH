@@ -41,4 +41,21 @@ public class Alocacao {
             observacao
         );
     }
+
+    public Recurso getRecurso() {
+        return recurso;
+    }
+
+    public Colaborador getColaborador() {
+        return colaborador;
+    }
+
+    public String exibir() {
+        return "Alocacao{" +
+                "colaborador=" + colaborador +
+                ", recurso=" + recurso +
+                ", data=" + data +
+                ", observacao='" + observacao + '\'' +
+                '}';
+    }
 }
