@@ -118,8 +118,69 @@ com.resources.human
 
 ---
 
-## 🧩 Diagrama de Classes (Simplificado)
-![Diagrama de Classes](./diagramas/diagrama-classes.png)
+## 🧩 Diagrama de Classes
+
+```mermaid
+classDiagram
+
+class Colaborador {
+  - int id
+  - String nome
+  - String cargo
+  - double salario
+  - boolean ativo
+  - String dataAdmissao
+  + promover(String novoCargo, double novoSalario)
+}
+
+class Recurso {
+  - int id
+  - String nome
+  - Categoria categoria
+  - boolean disponivel
+  - double valorEstimado
+  + podeSerAlocado() boolean
+}
+
+class Alocacao {
+  - int colaboradorId
+  - int recursoId
+  - String data
+  - String observacao
+}
+
+class SistemaERS {
+  - List~Colaborador~ listaColaboradores
+  - List~Recurso~ listaRecursos
+  - List~Alocacao~ listaAlocacoes
+  + cadastrar()
+  + alocarRecurso(int colaboradorId, int recursoId)
+  + devolverRecurso()
+  + buscar()
+}
+
+class Categoria {
+  <<enumeration>>
+  NOTEBOOK
+  DESKTOP
+  MONITOR
+  MOUSE
+  TECLADO
+  WEBCAM
+  HEADSET
+  DOCK_STATION
+  SUPORTE_NOTEBOOK
+  SUPORTE_MONITOR
+  CADEIRA_ERGONOMICA
+}
+
+Colaborador "1" --> "*" Alocacao : possui
+Recurso "1" --> "*" Alocacao : vinculado
+SistemaERS "1" --> "*" Colaborador : gerencia
+SistemaERS "1" --> "*" Recurso : gerencia
+SistemaERS "1" --> "*" Alocacao : gerencia
+Recurso --> Categoria
+```
 
 ---
 
@@ -273,10 +334,12 @@ Este projeto reforça a importância de:
 
 ## 🧑‍💻  Equipe
 
-Projeto desenvolvido por:  
-- Lucas dos Reis Aquino - 562414  
-- Lucas Perez Bonato - 565356  
-- Diogo Oliveira Lima - 562559  
-- Leandro Simoneli da Silva - 566539
-- Davi Marques de Andrade Munhoz - 566223
+Projeto desenvolvido por:
 
+* Lucas dos Reis Aquino - 562414
+* Lucas Perez Bonato - 565356
+* Diogo Oliveira Lima - 562559
+* Leandro Simoneli da Silva - 566539
+* Davi Marques de Andrade Munhoz - 566223
+
+---
