@@ -5,13 +5,14 @@ import com.resources.human.domain.enums.Categoria;
 import com.resources.human.domain.exceptions.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class SistemaERS {
-    private List<Recurso> recursoList;
-    private List<Colaborador> colaboradorList;
-    private List<Alocacao> alocacaoList;
+    private List<Recurso> recursoList = new ArrayList<>();
+    private List<Colaborador> colaboradorList = new ArrayList<>();
+    private List<Alocacao> alocacaoList = new ArrayList<>();
 
     public Colaborador cadastrarColaborador(int id, String nome, String cargo, double salario, LocalDate dataDeAdmissao)
             throws AlreadyExistsByIdException {
@@ -98,7 +99,7 @@ public class SistemaERS {
         recursoList.remove(recurso);
     }
 
-    public void alocarRecurso(int colaboradorId, int recursoId) throws EntityNotFoundException, DomainValidationException {
+    public void alocarRecurso(int colaboradorId, int recursoId, String observation) throws EntityNotFoundException, DomainValidationException {
         Optional<Colaborador> colaboradorAlocacao = colaboradorList.stream()
                 .filter(c -> c.getId() == colaboradorId)
                 .findFirst();
@@ -115,7 +116,7 @@ public class SistemaERS {
                 colaboradorAlocacao.get(),
                 recursoAlocacao.get(),
                 LocalDate.now(),
-                "Devolução será realizada no dia do retorno do Diretor para a Matriz."
+                observation
         );
 
         alocacaoList.add(alocacao);
