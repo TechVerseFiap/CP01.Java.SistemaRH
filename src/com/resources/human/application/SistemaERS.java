@@ -109,6 +109,8 @@ public class SistemaERS {
 
         if (colaboradorAlocacao.isEmpty())
             throw new EntityNotFoundException("Não é possível realizar a alocação para um Colaborador não cadastrado!");
+        if (!colaboradorAlocacao.get().isAtivo())
+            throw new DomainValidationException("Não é possível realizar a alocação para um Colaborador desaivado!");
         if (recursoAlocacao.isEmpty())
             throw new EntityNotFoundException("Não é possível realizar a alocação para um Recurso não cadastrado!");
 

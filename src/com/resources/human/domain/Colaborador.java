@@ -46,6 +46,18 @@ public class Colaborador {
         this.salario = novoSalario;
     }
 
+    public boolean isAtivo() {
+        return this.ativo;
+    }
+
+    public void ativar() {
+        this.ativo = true;
+    }
+
+    public void desativar() {
+        this.ativo = false;
+    }
+
     public int getId() {
         return this.id;
     }
