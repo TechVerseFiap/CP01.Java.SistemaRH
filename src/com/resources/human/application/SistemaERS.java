@@ -89,7 +89,7 @@ public class SistemaERS {
         if (alocacaoList.stream().anyMatch(a -> a.getColaborador().getId() == colaboradorId))
             throw new EntityInUseException("Impossível remover um colaborador que ainda possui alguma alocação ativa!");
         Colaborador colaborador = buscarColaboradorById(colaboradorId);
-        colaboradorList.remove(colaborador);
+        colaborador.desativar();
     }
 
     public void removerRecurso(int recursoId) throws EntityInUseException, EntityNotFoundException {
