@@ -85,10 +85,13 @@ public class SistemaERS {
         System.out.println("- Nenhuma alocação Cadastrado");
     }
 
-    public void removerColaborador(int colaboradorId) throws EntityInUseException, EntityNotFoundException {
+    public void removerColaborador(int colaboradorId)
+            throws EntityInUseException, EntityNotFoundException, DomainValidationException {
         if (alocacaoList.stream().anyMatch(a -> a.getColaborador().getId() == colaboradorId))
             throw new EntityInUseException("Impossível remover um colaborador que ainda possui alguma alocação ativa!");
         Colaborador colaborador = buscarColaboradorById(colaboradorId);
+        if (!colaborador.isAtivo())
+            throw new DomainValidationException("O colaborador já foi removido do sistema!");
         colaborador.desativar();
     }
 
@@ -110,7 +113,7 @@ public class SistemaERS {
         if (colaboradorAlocacao.isEmpty())
             throw new EntityNotFoundException("Não é possível realizar a alocação para um Colaborador não cadastrado!");
         if (!colaboradorAlocacao.get().isAtivo())
-            throw new DomainValidationException("Não é possível realizar a alocação para um Colaborador desaivado!");
+            throw new DomainValidationException("Não é possível realizar a alocação para um Colaborador desativado!");
         if (recursoAlocacao.isEmpty())
             throw new EntityNotFoundException("Não é possível realizar a alocação para um Recurso não cadastrado!");
 
