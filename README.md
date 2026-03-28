@@ -175,7 +175,7 @@ class Categoria {
 }
 
 Colaborador "1" --> "*" Alocacao : possui
-Recurso "1" --> "*" Alocacao : vinculado
+Recurso "1" --> "1" Alocacao : vinculado
 SistemaERS "1" --> "*" Colaborador : gerencia
 SistemaERS "1" --> "*" Recurso : gerencia
 SistemaERS "1" --> "*" Alocacao : gerencia
@@ -290,7 +290,7 @@ Foram criadas exceções específicas para regras de negócio:
 1. Clone o repositório:
 
 ```bash
-git clone <SEU_LINK_AQUI>
+git clone https://github.com/TechVerseFiap/CP01.Java.SistemaRH.git
 ```
 
 2. Abra no IntelliJ

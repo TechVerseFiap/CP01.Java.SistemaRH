@@ -25,7 +25,7 @@ public class Alocacao {
         this.recurso = recurso;
         recurso.mudarDisponibilidade();
         this.data = data;
-        this.observacao = observacao;
+        this.observacao = (observacao == null || observacao.isBlank()) ? null : observacao;
     }
 
     public static Alocacao create(
