@@ -52,8 +52,8 @@ public class Alocacao {
 
     public String exibir() {
         return "Alocacao{" +
-                "colaborador=" + colaborador +
-                ", recurso=" + recurso +
+                "colaborador=" + colaborador.exibir() +
+                ", recurso=" + recurso.exibir() +
                 ", data=" + data +
                 ", observacao='" + observacao + '\'' +
                 '}';
