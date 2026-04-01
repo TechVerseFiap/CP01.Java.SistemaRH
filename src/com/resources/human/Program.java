@@ -53,10 +53,10 @@ public class Program {
             // 4. BUSCA
             // =========================
             System.out.println("\n=== BUSCANDO COLABORADOR ===");
-            System.out.println(sistema.buscarColaboradorById(1).exibir());
+            System.out.println(sistema.buscarColaboradorById(1).toString());
 
             System.out.println("\n=== BUSCANDO RECURSO ===");
-            System.out.println(sistema.buscarRecursoById(1).exibir());
+            System.out.println(sistema.buscarRecursoById(1).toString());
 
             // =========================
             // 5. DEVOLUÇÃO

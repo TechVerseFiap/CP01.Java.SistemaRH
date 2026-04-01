@@ -50,10 +50,11 @@ public class Alocacao {
         return colaborador;
     }
 
-    public String exibir() {
+    @Override
+    public String toString() {
         return "Alocacao{" +
-                "colaborador=" + colaborador.exibir() +
-                ", recurso=" + recurso.exibir() +
+                "colaborador=" + colaborador.toString() +
+                ", recurso=" + recurso.toString() +
                 ", data=" + data +
                 ", observacao='" + observacao + '\'' +
                 '}';

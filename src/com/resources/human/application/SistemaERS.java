@@ -56,7 +56,7 @@ public class SistemaERS {
         System.out.println("=== LISTAGEM DE COLABORADORES CADASTRADOS ===\n\n");
         if (!colaboradorList.isEmpty()) {
             for (Colaborador c : colaboradorList) {
-                System.out.println(c.exibir());
+                System.out.println(c.toString());
             }
             return;
         }
@@ -67,7 +67,7 @@ public class SistemaERS {
         System.out.println("=== LISTAGEM DE RECURSOS CADASTRADOS ===\n\n");
         if (!recursoList.isEmpty()) {
             for (Recurso r : recursoList) {
-                System.out.println(r.exibir());
+                System.out.println(r.toString());
             }
             return;
         }
@@ -78,7 +78,7 @@ public class SistemaERS {
         System.out.println("=== LISTAGEM DE ALOCAÇÕES CADASTRADOS ===\n\n");
         if (!alocacaoList.isEmpty()) {
             for (Alocacao a : alocacaoList) {
-                System.out.println(a.exibir());
+                System.out.println(a.toString());
             }
             return;
         }

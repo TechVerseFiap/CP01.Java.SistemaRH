@@ -50,7 +50,8 @@ public class Recurso {
         return this.id;
     }
 
-    public String exibir() {
+    @Override
+    public String toString() {
         return "Recurso{" +
                 "id=" + id +
                 ", nomeDoRecurso='" + nomeDoRecurso + '\'' +

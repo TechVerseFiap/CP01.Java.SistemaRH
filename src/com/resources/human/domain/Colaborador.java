@@ -62,7 +62,8 @@ public class Colaborador {
         return this.id;
     }
 
-    public String exibir() {
+    @Override
+    public String toString() {
         return "Colaborador{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
