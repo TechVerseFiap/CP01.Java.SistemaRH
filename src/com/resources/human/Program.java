@@ -49,6 +49,10 @@ public class Program {
 
             sistema.listarAlocacoes();
 
+            System.out.println("\n=== PROMOVENDO COLABORADOR ===");
+            sistema.buscarColaboradorById(1).promover("Desenvolvedor Pleno", 9000);
+
+
             // =========================
             // 4. BUSCA
             // =========================
